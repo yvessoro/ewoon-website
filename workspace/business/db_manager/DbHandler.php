@@ -438,6 +438,20 @@ class DbHandler {
         return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut IN (1,2) order by p.designation");
     }
 
+    public function getAllProductsValidated() {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut=1 order by p.designation");
+    }
+
+    public function getOffers() {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut=1 order by p.designation limit 5");
+    }
+
     public function getAllProductsByAnnonceur($id) {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
@@ -782,7 +796,7 @@ class DbHandler {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            return SUCESS;
+            return SUCCESS;
         } else {
             $stmt->close();
             // user not existed with the email
@@ -801,7 +815,7 @@ class DbHandler {
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            return SUCESS;
+            return SUCCESS;
         } else {
             $stmt->close();
             // user not existed with the email

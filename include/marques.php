@@ -15,7 +15,7 @@
 					<div class="banner banner-1">
 						<img src="workspace/upload/all.png" alt="">
 						<div class="banner-caption text-center">
-							<button class="primary-btn">Voir les pièces</button>
+							<a class="primary-btn" href="?link=products">Voir les pièces</a>
 						</div>
 					</div>
 				</div>
