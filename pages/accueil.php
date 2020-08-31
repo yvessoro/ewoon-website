@@ -26,6 +26,10 @@
 	<?php include 'include/sliders.php'; ?>
 	<!-- /HOME SLIDERS -->
 
+	<!-- section partners -->
+	<?php include 'include/partners.php'; ?>
+	<!-- /section partners -->
+
 	<!-- section categories -->
 	<?php include 'include/categories.php'; ?>
 	<!-- /section categories -->

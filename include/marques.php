@@ -6,43 +6,42 @@
 				<!-- section-title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h2 class="title">Nos marques de pièces</h2>
+						<h2 class="title">Nos marques</h2>
 					</div>
 				</div>
 				<!-- /section-title -->
 				<!-- banner -->
 				<div class="col-md-8">
 					<div class="banner banner-1">
-						<img src="./img/banner13.jpg" alt="">
+						<img src="workspace/upload/all.png" alt="">
 						<div class="banner-caption text-center">
-							<h1 class="primary-color">Marques<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
-							<button class="primary-btn">Découvrir</button>
+							<button class="primary-btn">Voir les pièces</button>
 						</div>
 					</div>
 				</div>
 				<!-- /banner -->
 
-				<!-- banner -->
-				<div class="col-md-4 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img src="./img/banner11.jpg" alt="">
-						<div class="banner-caption text-center">
-							<button class="primary-btn">Découvrir</button>
+				<?php
+                    $res = $db->getLatestMarques();
+                    if (mysqli_num_rows($res) > 0) {
+                        while ($row = mysqli_fetch_array($res)) {
+                            $id = $row["idmarque"];
+                            $nom = stripslashes($row["libelle"]);
+							$filename = $row["photo"];
+                            ?>
+						<!-- banner -->
+						<div class="col-md-4">
+							<a class="banner banner-1" href="#">
+                                <img src="workspace/upload/<?php echo $filename; ?>" alt="">
+								<div class="banner-caption text-center">
+									<h6 class="primary-btn">Voir</h6>
+								</div>
+							</a>
 						</div>
-					</a>
-				</div>
-				<!-- /banner -->
+						<!-- /banner -->
+				<?php }
+                    } ?>
 
-				<!-- banner -->
-				<div class="col-md-4 col-sm-6">
-					<a class="banner banner-1" href="#">
-						<img src="./img/banner11.jpg" alt="">
-						<div class="banner-caption text-center">
-							<button class="primary-btn">Découvrir</button>
-						</div>
-					</a>
-				</div>
-				<!-- /banner -->
 			</div>
 			<!-- /row -->
 		</div>

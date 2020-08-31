@@ -95,12 +95,12 @@ class DbHandler {
         return $response;
     }
 
-    public function createMarque($id, $libelle, $idadmin) {
+    public function createMarque($id, $libelle, $photo, $idadmin) {
         $response = array();
 
         // insert query
-        $stmt = $this->conn->prepare("INSERT INTO marque (idmarque,libelle,idAdministrateur) values(?, ?, ?)");
-        $stmt->bind_param("isi", $id, $libelle, $idadmin);
+        $stmt = $this->conn->prepare("INSERT INTO marque (idmarque,libelle,photo,idAdministrateur) values(?, ?, ?, ?)");
+        $stmt->bind_param("issi", $id, $libelle, $photo, $idadmin);
 
         $result = $stmt->execute();
 
@@ -118,12 +118,12 @@ class DbHandler {
         return $response;
     }
 
-    public function createCategorie($id, $libelle, $idadmin) {
+    public function createCategorie($id, $libelle, $photo, $idadmin) {
         $response = array();
 
         // insert query
-        $stmt = $this->conn->prepare("INSERT INTO categorie (idcategorie,libelle,idAdministrateur) values(?, ?, ?)");
-        $stmt->bind_param("isi", $id, $libelle, $idadmin);
+        $stmt = $this->conn->prepare("INSERT INTO categorie (idcategorie,libelle,photo,idAdministrateur) values(?, ?, ?, ?)");
+        $stmt->bind_param("issi", $id, $libelle, $photo, $idadmin);
 
         $result = $stmt->execute();
 
@@ -351,14 +351,21 @@ class DbHandler {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
-        return mysqli_query($this->conn, "SELECT * FROM marque order by libelle");
+        return mysqli_query($this->conn, "SELECT * FROM marque where statut=1 order by libelle");
+    }
+
+    public function getLatestMarques() {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT * FROM marque where statut=1 order by libelle limit 2");
     }
 
     public function getAllCategories() {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
-        return mysqli_query($this->conn, "SELECT * FROM categorie order by libelle");
+        return mysqli_query($this->conn, "SELECT * FROM categorie where statut=1 order by libelle");
     }
 
     public function getAllEtats() {
@@ -632,7 +639,7 @@ class DbHandler {
 
     public function deleteMarque($id) {
 
-        $stmt = $this->conn->prepare("DELETE FROM marque WHERE idmarque = ?");
+        $stmt = $this->conn->prepare("UPDATE marque SET statut=0 WHERE idmarque = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $num_affected_rows = $stmt->affected_rows;
@@ -642,7 +649,7 @@ class DbHandler {
 
     public function deleteCategorie($id) {
 
-        $stmt = $this->conn->prepare("DELETE FROM categorie WHERE idcategorie = ?");
+        $stmt = $this->conn->prepare("UPDATE categorie SET statut=0 WHERE idcategorie = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $num_affected_rows = $stmt->affected_rows;

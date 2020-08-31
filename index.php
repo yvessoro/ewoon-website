@@ -1,7 +1,7 @@
 <?php
 session_start();
-//include_once 'business/db_manager/DbHandler.php';
-//$db = new DbHandler();
+include_once 'workspace/business/db_manager/DbHandler.php';
+$db = new DbHandler();
 ?>
 <!doctype html>
 <html>

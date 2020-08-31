@@ -11,32 +11,26 @@
             </div>
             <!-- /section-title -->
 
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner banner-1" href="#">
-                    <img src="./img/banner10.jpg" alt="">
-                    <div class="banner-caption text-center">
-                        <!--<h2 class="white-color">NEW COLLECTION</h2>-->
-                    </div>
-                </a>
-            </div>
-            <!-- /banner -->
-
-            <!-- banner -->
-            <div class="col-md-4 col-sm-6">
-                <a class="banner banner-1" href="#">
-                    <img src="./img/banner10.jpg" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
-
-            <!-- banner -->
-            <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-1" href="#">
-                    <img src="./img/banner10.jpg" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+            <?php
+                $res = $db->getAllCategories();
+                if (mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
+                        $id = $row["idcategorie"];
+                        $nom = stripslashes($row["libelle"]);
+                        $filename = $row["photo"];
+                        ?>
+                        <!-- banner -->
+                        <div class="col-md-4 col-sm-6">
+                            <a class="banner banner-1" href="#">
+                                <img src="workspace/upload/<?php echo $filename; ?>" alt="">
+                                <div class="banner-caption text-center">
+							        <h4 class="primary-btn"><?php echo $nom; ?></h2>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- /banner -->
+                <?php }
+            } ?>
 
         </div>
         <!-- /row -->

@@ -11,7 +11,7 @@
 						<div class="banner-caption text-center">
 							<h1 class="primary-color">Prix en baisse</h1>
 							<h3 class="white-color font-weak">Jusqu'à 50% de réduction</h3>
-							<button class="primary-btn">Découvrir</button>
+							<!--<button class="primary-btn">Découvrir</button>-->
 						</div>
 					</div>
 					<!-- /banner -->
@@ -22,7 +22,6 @@
 						<div class="banner-caption text-center">
 							<h1 class="primary-color">Offre semaine</h1>
 							<h3 class="white-color font-weak">Amortisseurs, freins, embrallages</h3>
-							<button class="primary-btn">Découvrir</button>
 						</div>
 					</div>
 					<!-- /banner -->
@@ -33,7 +32,6 @@
 						<div class="banner-caption text-center">
 							<h1 class="primary-color">Devis</h1>
 							<h3 class="white-color font-weak">Demandez vite un devis pour vos pièces</h3>
-							<button class="primary-btn">Demander un devis</button>
 						</div>
 					</div>
 					<!-- /banner -->

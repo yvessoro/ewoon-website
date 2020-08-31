@@ -5,6 +5,7 @@
             <table id="export-table" class="table mb-0">
                 <thead>
                     <tr>
+                        <th>Photo</th>
                         <th>Identifiant</th>
                         <th>Libellé</th>
                         <th>Actions</th>
@@ -17,8 +18,14 @@
                         while ($row = mysqli_fetch_array($res)) {
                             $id = $row["idcategorie"];
                             $nom = stripslashes($row["libelle"]);
+                            $filename = $row["photo"];
                             ?>
                         <tr>
+                            <?php if(empty($filename)){ ?>
+                                <td><?php echo "Aucune image" ?></td>
+                            <?php } else { ?>
+                                <td><img src="./upload/<?php echo $filename; ?>" alt="..." class="margin" width="150" height="100"></td>
+                            <?php } ?>
                             <td><span class="text-primary"><?php echo $id ?></span></td>
                             <td><?php echo $nom ?></td>
                             <td class="td-actions">
