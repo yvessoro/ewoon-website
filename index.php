@@ -12,7 +12,7 @@ $db = new DbHandler();
 <meta name="keywords" content="store">
 <meta name="author" content="Unique Software">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="icon" type="image/png" href="img/u-sms-icon.png" />
+<link rel="icon" type="image/png" href="img/logo.png" />
 <link href="css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 

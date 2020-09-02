@@ -26,8 +26,12 @@
 	<?php include 'include/sliders.php'; ?>
 	<!-- /HOME SLIDERS -->
 
+	<!-- section partners --><br>
+	<?php include 'include/slideshow.php'; ?>
+	<!-- /section partners -->
+
 	<!-- section partners -->
-	<?php include 'include/partners.php'; ?>
+	<?php include 'include/car_map.php'; ?>
 	<!-- /section partners -->
 
 	<!-- section categories -->
@@ -45,6 +49,10 @@
 	<!-- section -->
 	<?php include 'include/marques.php'; ?>
 	<!-- /section -->
+
+	<!-- section partners -->
+	<?php include 'include/partners.php'; ?>
+	<!-- /section partners -->
 
 	<!-- FOOTER -->
 	<?php include 'include/footer.php'; ?>

@@ -15,7 +15,7 @@ if (isset($_POST["radioType"]) and isset($_POST["username"]) and isset($_POST["p
     
     if($_POST["radioType"]=="annonceur"){
         $res = $db->checkAnnonceurLogin($username, $pwd);
-        if ($res == SUCESS) {
+        if ($res == SUCCESS) {
             $user = $db->getAnnonceurByEmail($username);
             if ($user != NULL) {
                 $_SESSION['ID'] = $user["idannonceur"];
@@ -31,7 +31,7 @@ if (isset($_POST["radioType"]) and isset($_POST["username"]) and isset($_POST["p
         }
     }else if($_POST["radioType"]=="administrateur"){
         $res = $db->checkAdminLogin($username, $pwd);
-        if ($res == SUCESS) {
+        if ($res == SUCCESS) {
             $user = $db->getAdminByUsername($username);
             if ($user != NULL) {
                 $_SESSION['ID'] = $user["idAdministrateur"];

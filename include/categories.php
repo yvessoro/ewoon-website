@@ -6,7 +6,7 @@
             <!-- section-title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h2 class="title">Trouvez votre pièce </h2>
+                    <h2 class="title">Notre catalogue de pièces </h2>
                 </div>
             </div>
             <!-- /section-title -->
