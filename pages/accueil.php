@@ -23,7 +23,7 @@
 	<!-- /NAVIGATION -->
 
 	<!-- HOME SLIDERS -->
-	<?php include 'include/sliders.php'; ?>
+	<?php include 'include/search.php'; ?>
 	<!-- /HOME SLIDERS -->
 
 	<!-- section partners --><br>
@@ -35,16 +35,12 @@
 	<!-- /section partners -->
 
 	<!-- section categories -->
-	<?php include 'include/categories.php'; ?>
+	<?php include 'include/top_search.php'; ?>
 	<!-- /section categories -->
 
 	<!-- section -->
 	<?php include 'include/services.php'; ?>
 	<!-- /section -->
-
-	<!-- section offres -->
-	<?php include 'include/offers.php'; ?>
-	<!-- /section offres -->
 
 	<!-- section -->
 	<?php include 'include/marques.php'; ?>
@@ -53,6 +49,10 @@
 	<!-- section partners -->
 	<?php include 'include/partners.php'; ?>
 	<!-- /section partners -->
+
+	<!-- HOME SLIDERS -->
+	<?php include 'include/infos.php'; ?>
+	<!-- /HOME SLIDERS -->
 
 	<!-- FOOTER -->
 	<?php include 'include/footer.php'; ?>

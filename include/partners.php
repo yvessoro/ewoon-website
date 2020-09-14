@@ -11,53 +11,67 @@
             </div>
             <!-- /section-title -->
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+            <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-centered">
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-            <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+                    <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="5000">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="carousel-col">
+                                    <div class="block grey img-responsive">
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="carousel-col">
+                                    <div class="block grey img-responsive">
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="carousel-col">
+                                    <div class="block grey img-responsive">
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
-            </div>
-            <!-- /banner -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="carousel-col">
+                                    <div class="block grey img-responsive">
 
-            <!-- banner -->
-            <div class="col-md-2 col-md-offset-0 col-sm-6 col-sm-offset-3">
-                <a class="banner banner-service text-center" href="#">
-                    <img src="workspace/upload/all.png" alt="">
-                </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="carousel-col">
+                                    <div class="block grey img-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls --
+                        <div class="left carousel-control">
+                            <a href="#carousel" role="button" data-slide="prev">
+                                <span class="prev" aria-hidden="true">&#10094;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </div>
+                        <div class="right carousel-control">
+                            <a href="#carousel" role="button" data-slide="next">
+                                <span class="next" aria-hidden="true">&#10095;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>-->
+                    </div>
+
+                </div>
             </div>
-            <!-- /banner -->
+</div>
 
         </div>
         <!-- /row -->

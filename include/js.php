@@ -5,3 +5,5 @@
 <script src="js/jquery.zoom.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/slideshow.js"></script>
+<script src="js/slideshow_top.js"></script>
+<script src="js/partners.js"></script>

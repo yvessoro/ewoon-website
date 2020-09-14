@@ -1,4 +1,4 @@
-<div class="section">
+<div class="section section-grey">
 		<!-- container -->
 		<div class="container">
 			<!-- row -->

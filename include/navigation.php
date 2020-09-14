@@ -7,19 +7,18 @@
                     <span class="category-header">Recherche <i class="fa fa-list"></i></span>
                     <div class="category-list"></br>
                         <form>
-                            <h4 class="footer-header">IMMATRICULATION / VIN</h4>
-                            <div class="form-group">
-                                <input class="input" placeholder="Immatriculation / numéro chassis">
-                            </div>
-                            <button class="primary-btn">Rechercher</button>
-                        </form> </br></br>
-
-                        <form>
                             <h4 class="footer-header">RÉFÉRENCE DE PIECE</h4>
                             <div class="form-group">
                                 <input class="input" placeholder="Référence de la pièce">
                             </div>
                             <button class="primary-btn">Rechercher la pièce</button>
+                        </form> </br></br>
+                        <form>
+                            <h4 class="footer-header">IMMATRICULATION / VIN</h4>
+                            <div class="form-group">
+                                <input class="input" placeholder="Immatriculation / numéro chassis">
+                            </div>
+                            <button class="primary-btn">Rechercher</button>
                         </form> </br></br>
 
                         <form>
