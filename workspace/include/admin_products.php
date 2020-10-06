@@ -43,7 +43,16 @@
                             $marque = stripslashes($row["marque"]);
                             $fabricant = stripslashes($row["fabricant"]);
                             $version = stripslashes($row["version"]);
-                            $annonceur = stripslashes($row["nom"]." ".$row["prenom"]);
+
+                            $res1 = $db->getAnnonceurByProduct($row["idannonceur"]);
+                            if (mysqli_num_rows($res1) > 0) {
+                                while ($rowA = mysqli_fetch_array($res1)) {
+                                    $annonceur = stripslashes($rowA["nom"]." ".$rowA["prenom"]);
+                                }
+                            }else{
+                                $annonceur = "EWOON";
+                            }
+                            
                             ?>
                         <tr>
                             <?php if(empty($filename)){ ?>

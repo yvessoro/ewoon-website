@@ -1,0 +1,38 @@
+.show{
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    color: #000070;
+}
+
+.show:hover ul.list-categories{
+    max-height: inherit;
+    opacity: 1;
+    width: 200px;
+    background-color: transparent;
+  }
+  
+  .list-categories{
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 300ms ease;
+  }
+
+  .list-categories a {
+    color: #000070;
+    -webkit-transition: 0.3s color;
+    transition: 0.3s color;
+    background-color: transparent;
+  }
+
+  .list-categories a:hover, a:focus {
+    color: #F8694A;
+    text-decoration: none;
+    outline: none;
+  }

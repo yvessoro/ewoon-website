@@ -46,9 +46,18 @@
 					<div class="aside">
 						<h3 class="aside-title">Filtre par marques</h3>
 						<ul class="list-links">
-							<li><a href="#">Peugeot</a></li>
-							<li><a href="#">Honda</a></li>
-							<li><a href="#">KIA</a></li>
+							<?php
+								$res = $db->getAllMarques();
+								if (mysqli_num_rows($res) > 0) {
+									while ($row = mysqli_fetch_array($res)) {
+										$id = $row["idmarque"];
+										$nom = $row["libelle"];
+										?>
+											<li><a href="?link=products&cat=<?php echo $_GET["cat"]; ?>&marques=<?php echo $id; ?>"><?php echo $nom; ?></a></li>
+										<?php
+									}
+								} 
+							?>
 						</ul>
 					</div>
 					<!-- /aside widget -->
@@ -56,9 +65,18 @@
 					<div class="aside">
 						<h3 class="aside-title">Filtre par fabricants</h3>
 						<ul class="list-links">
-							<li><a href="#">Honda</a></li>
-							<li><a href="#">Clean car</a></li>
-							<li><a href="#">Bosch</a></li>
+							<?php
+								$res = $db->getAllFabricants();
+								if (mysqli_num_rows($res) > 0) {
+									while ($row = mysqli_fetch_array($res)) {
+										$id = $row["idfabricant"];
+										$nom = $row["libelle"];
+										?>
+											<li><a href="?link=products&cat=<?php echo $_GET["cat"]; ?>&marques=<?php echo $id; ?>"><?php echo $nom; ?></a></li>
+										<?php
+									}
+								} 
+							?>
 						</ul>
 					</div>
 					<!-- /aside widget -->

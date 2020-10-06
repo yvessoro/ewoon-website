@@ -36,10 +36,12 @@
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                     <li><a href="?link=home">Accueil</a></li>
-                    <li><a href="?link=products">Pneus et chaines</a></li>
-                    <li><a href="?link=products">Batteries de démarrage</a></li>
-                    <li><a href="?link=products">Huiles moteur</a></li>
-                    <li><a href="?link=products">Accessoires auto</a></li>
+                    <li><a href="#">Trouvez une pièce</a></li>
+                    <li><a href="#">Les plus recherchés</a></li>
+                    <li><a href="#">Nos services</a></li>
+                    <!--<li><a href="?link=products&cat=621890821">Huiles moteur</a></li>-->
+                    <li><a href="#">Nos marques</a></li>
+                    <li><a href="#">Qui sommes-nous ?</a></li>
                 </ul>
             </div>
             <!-- menu nav -->

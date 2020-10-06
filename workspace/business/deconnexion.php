@@ -11,5 +11,5 @@ function redirect($url) {
     echo "window.location.href = '" . $url . "';";
     echo "</script>";
 }
-redirect('../?link=index.php');
+redirect('../../?link=index.php');
 ?>

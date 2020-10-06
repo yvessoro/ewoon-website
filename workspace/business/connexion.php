@@ -18,6 +18,7 @@ if (isset($_POST["radioType"]) and isset($_POST["username"]) and isset($_POST["p
         if ($res == SUCCESS) {
             $user = $db->getAnnonceurByEmail($username);
             if ($user != NULL) {
+                $_SESSION['CONNECTED'] = "SELLER";
                 $_SESSION['ID'] = $user["idannonceur"];
                 $_SESSION['NOM'] = $user["nom"];
                 $_SESSION['PRENOM'] = $user["prenom"];
@@ -34,6 +35,7 @@ if (isset($_POST["radioType"]) and isset($_POST["username"]) and isset($_POST["p
         if ($res == SUCCESS) {
             $user = $db->getAdminByUsername($username);
             if ($user != NULL) {
+                $_SESSION['CONNECTED'] = "ADMIN";
                 $_SESSION['ID'] = $user["idAdministrateur"];
                 $_SESSION['NOM'] = $user["nom"];
                 $_SESSION['PRENOM'] = $user["prenom"];

@@ -65,6 +65,44 @@ class DbHandler {
      * @param String $pseudo User phone
      * @param String $password User login password
      */
+    public function createUser($id, $nom, $prenom, $phone, $email, $password) {
+        $response = array();
+
+        // First check if user already existed in db
+        if (!$this->isUserExists($email)) {
+
+            // insert query
+            $stmt = $this->conn->prepare("INSERT INTO utilisateur(idutilisateur,nom,prenom,phone,email, mot_de_passe) values(?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("isssss", $id, $nom, $prenom, $phone, $email, $password);
+
+            $result = $stmt->execute();
+
+            $stmt->close();
+
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                return SUCCESS;
+            } else {
+                // Failed to create user
+                return FAILED;
+            }
+        } else {
+            // User with same email already existed in the db
+            return EXISTED;
+        }
+
+        return $response;
+    }
+
+    /**
+     * Creating new user
+     * @param String $id User ID
+     * @param String $lastname User lastname
+     * @param String $firstname User firstname
+     * @param String $pseudo User phone
+     * @param String $password User login password
+     */
     public function createAnnonceur($id, $nom, $prenom,$email, $password) {
         $response = array();
 
@@ -325,6 +363,34 @@ class DbHandler {
         return $response;
     }
 
+    public function addCar($id,$immatriculation,$vin,$idversion, $idmodele,$idcarburant,$idmarque,$iduser) {
+        $response = array();
+
+        if (!$this->isCarExists($immatriculation)) {
+            // insert query
+            $stmt = $this->conn->prepare("INSERT INTO vehicule (idvehicule,immatriculation,vin,idversion,idmodele,idcarburant,idmarque,idutilisateur) values(?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("issiiiii", $id,$immatriculation,$vin,$idversion, $idmodele,$idcarburant,$idmarque,$iduser);
+
+            $result = $stmt->execute();
+
+            $stmt->close();
+
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                return SUCCESS;
+            } else {
+                // Failed to create user
+                return FAILED;
+            }
+        } else {
+            // User with same email already existed in the db
+            return EXISTED;
+        }
+
+        return $response;
+    }
+
     /* ------------- End creation methods ------------------ */
 
     /* ------------- Lists methods ------------------- */
@@ -431,25 +497,39 @@ class DbHandler {
         return mysqli_query($this->conn, "SELECT v.idversion, v.libelle, m.libelle as modele, c.libelle as carburant, v.nbre_porte, v.couleur FROM version v, modele m, carburant c where v.idcarburant=c.idcarburant and v.idmodele=m.idmodele and v.idmodele='$id' order by v.libelle");
     }
 
+    public function getAnnonceurByProduct($id) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT nom, prenom FROM annonceur, produit where annonceur.idannonceur=produit.idannonceur and produit.idannonceur='$id'");
+    }
+
     public function getAllProducts() {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
-        return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut IN (1,2) order by p.designation");
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion  and p.statut IN (1,2) order by p.designation");
     }
 
     public function getAllProductsValidated() {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
-        return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut=1 order by p.designation");
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion  and p.statut=1 order by p.designation");
+    }
+
+    public function getAllProductsValidatedByCat($id) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion and p.idtypeProduit='$id'  and p.statut=1 order by p.designation");
     }
 
     public function getOffers() {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
-        return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, a.nom, a.prenom, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut=1 order by p.designation limit 5");
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion  and p.statut=1 order by p.designation limit 5");
     }
 
     public function getAllProductsByAnnonceur($id) {
@@ -457,6 +537,13 @@ class DbHandler {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
         }
         return mysqli_query($this->conn, "SELECT p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant, v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,annonceur a ,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idannonceur=a.idannonceur and p.idversion=v.idversion  and p.statut IN (1,2) and p.idannonceur=$id order by p.designation");
+    }
+
+    public function getAllCarsByUser($id) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT v.idvehicule, v.immatriculation, v.vin, v.statut, m.libelle as modele, c.libelle as carburant, ma.libelle as marque, vs.libelle as version, v.added_at FROM vehicule v,modele m,carburant c,marque ma,utilisateur u ,version vs where v.idmodele=m.idmodele and v.idcarburant=c.idcarburant and v.idmarque=ma.idmarque and v.idutilisateur=u.idutilisateur and v.idversion=vs.idversion  and v.statut=1 and v.idutilisateur=$id order by v.added_at");
     }
 
     /**
@@ -505,18 +592,65 @@ class DbHandler {
         }
     }
 
-    public function getSpeculationById($idSpec) {
-        $stmt = $this->conn->prepare("SELECT nom, variete FROM speculation WHERE idspeculation = ?");
-        $stmt->bind_param("i", $idSpec);
+    public function getProductById($id) {
+        $stmt = $this->conn->prepare("SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.idtypeProduit as idType, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v WHERE p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion  and p.statut=1 and p.idproduit=?");
+        $stmt->bind_param("i", $id);
         if ($stmt->execute()) {
-            // $user = $stmt->get_result()->fetch_assoc();
-            $stmt->bind_result($nom, $variete);
+            $stmt->bind_result($idannonceur, $idproduit,$designation,$description,$reference,$prix,$poids,$photo,$statut,$commentaire,$idType,$type,$modele,$carburant,$etat,$marque,$fabricant,$version);
             $stmt->fetch();
-            $spec = array();
-            $spec["nom"] = $nom;
-            $spec["variete"] = $variete;
+            $data = array();
+            $data["idannonceur"] = $idannonceur;
+            $data["idproduit"] = $idproduit;
+            $data["designation"] = $designation;
+            $data["description"] = $description;
+            $data["reference"] = $reference;
+            $data["prix"] = $prix;
+            $data["poids"] = $poids;
+            $data["photo"] = $photo;
+            $data["statut"] = $statut;
+            $data["commentaire"] = $commentaire;
+            $data["idType"] = $idType;
+            $data["type"] = $type;
+            $data["modele"] = $modele;
+            $data["carburant"] = $carburant;
+            $data["etat"] = $etat;
+            $data["marque"] = $marque;
+            $data["fabricant"] = $fabricant;
+            $data["version"] = $version;
             $stmt->close();
-            return $spec;
+            return $data;
+        } else {
+            return NULL;
+        }
+    }
+
+    public function getProductByRef($ref) {
+        $stmt = $this->conn->prepare("SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.idtypeProduit as idType, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v WHERE p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion  and p.statut=1 and p.reference=?");
+        $stmt->bind_param("s", $ref);
+        if ($stmt->execute()) {
+            $stmt->bind_result($idannonceur, $idproduit,$designation,$description,$reference,$prix,$poids,$photo,$statut,$commentaire,$idType,$type,$modele,$carburant,$etat,$marque,$fabricant,$version);
+            $stmt->fetch();
+            $data = array();
+            $data["idannonceur"] = $idannonceur;
+            $data["idproduit"] = $idproduit;
+            $data["designation"] = $designation;
+            $data["description"] = $description;
+            $data["reference"] = $reference;
+            $data["prix"] = $prix;
+            $data["poids"] = $poids;
+            $data["photo"] = $photo;
+            $data["statut"] = $statut;
+            $data["commentaire"] = $commentaire;
+            $data["idType"] = $idType;
+            $data["type"] = $type;
+            $data["modele"] = $modele;
+            $data["carburant"] = $carburant;
+            $data["etat"] = $etat;
+            $data["marque"] = $marque;
+            $data["fabricant"] = $fabricant;
+            $data["version"] = $version;
+            $stmt->close();
+            return $data;
         } else {
             return NULL;
         }
@@ -560,6 +694,20 @@ class DbHandler {
         return mysqli_query($this->conn,"SELECT COUNT(idproduit) as stats FROM produit where statut IN (1,2)");
     }
 
+    public function getCountUserCars($id) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn,"SELECT COUNT(idvehicule) as stats FROM utilisateur u, vehicule v WHERE v.idutilisateur=u.idutilisateur and v.statut=1 and v.idutilisateur='$id'");
+    }
+
+    public function getCountUserOrders($id) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn,"SELECT COUNT(idcommande) as stats FROM utilisateur u, commande c WHERE c.idutilisateur=u.idutilisateur and c.statut IN (1,2) and c.idutilisateur='$id'");
+    }
+
     /* ------------- End Lists methods ------------------- */
 
     /* ------------- Verify existed methods ------------------- */
@@ -572,6 +720,26 @@ class DbHandler {
     private function isAdminExists($pseudo) {
         $stmt = $this->conn->prepare("SELECT idAdministrateur from administrateur WHERE pseudo = ?");
         $stmt->bind_param("s", $pseudo);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        return $num_rows > 0;
+    }
+
+    private function isUserExists($email) {
+        $stmt = $this->conn->prepare("SELECT idutilisateur from utilisateur WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+        $num_rows = $stmt->num_rows;
+        $stmt->close();
+        return $num_rows > 0;
+    }
+
+    private function isCarExists($immatriculation) {
+        $stmt = $this->conn->prepare("SELECT idvehicule from vehicule WHERE immatriculation = ?");
+        $stmt->bind_param("s", $immatriculation);
         $stmt->execute();
         $stmt->store_result();
         $num_rows = $stmt->num_rows;
@@ -823,6 +991,31 @@ class DbHandler {
         }
     }
 
+    /**
+     * Checking user login
+     * @param String $email User login email id
+     * @param String $password User login password
+     * @return boolean User login status success/fail
+     */
+    public function checkUserLogin($pseudo, $password) {
+        // fetching user by email
+        $stmt = $this->conn->prepare("SELECT * FROM utilisateur WHERE email = ? and mot_de_passe = ?");
+
+        $stmt->bind_param("ss", $pseudo,$password);
+
+        $stmt->execute();
+
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            return SUCCESS;
+        } else {
+            $stmt->close();
+            // user not existed with the email
+            return FAILED;
+        }
+    }
+
     /* ------------- End Login methods ------------------- */
 
     /* ------------- Fetching methods ------------------- */
@@ -832,20 +1025,18 @@ class DbHandler {
      * @param String $email User email id
      */
     public function getUserByEmail($email) {
-        $stmt = $this->conn->prepare("SELECT id_utilisateur,nom_utilisateur,prenom_utilisateur,contact_utilisateur, email_utilisateur,photo_utilisateur, api_key FROM utilisateur WHERE email_utilisateur = ? and statut_utilisateur=1");
+        $stmt = $this->conn->prepare("SELECT idutilisateur,nom,prenom,phone, email FROM utilisateur WHERE email = ? and statut=1");
         $stmt->bind_param("s", $email);
         if ($stmt->execute()) {
             // $user = $stmt->get_result()->fetch_assoc();
-            $stmt->bind_result($id, $lastname, $firstname, $phone, $email, $image, $api_key);
+            $stmt->bind_result($id, $lastname, $firstname, $phone, $email);
             $stmt->fetch();
             $user = array();
-            $user["id_utilisateur"] = $id;
-            $user["nom_utilisateur"] = $lastname;
-            $user["prenom_utilisateur"] = $firstname;
-            $user["contact_utilisateur"] = $phone;
-            $user["email_utilisateur"] = $email;
-            $user["photo_utilisateur"] = $image;
-            $user["api_key"] = $api_key;
+            $user["idutilisateur"] = $id;
+            $user["nom"] = $lastname;
+            $user["prenom"] = $firstname;
+            $user["phone"] = $phone;
+            $user["email"] = $email;
             $stmt->close();
             return $user;
         } else {

@@ -19,12 +19,12 @@
                         </div>
                         <strong class="text-uppercase">Espace client <i class="fa fa-caret-down"></i></strong>
                     </div>
-                    <a href="workspace/index.php" class="text-uppercase">Connexion</a>
+                    <a href="workspace/?link=user_login" class="text-uppercase">Connexion</a>
                     <ul class="custom-menu">
                         <li><a href="#"><i class="fa fa-user-o"></i> Mon compte</a></li>
                         <li><a href="#"><i class="fa fa-check"></i> Mon panier</a></li>
-                        <li><a href="workspace/index.php"><i class="fa fa-unlock-alt"></i> Connexion</a></li>
-                        <li><a href="#"><i class="fa fa-user-plus"></i> Inscription</a></li>
+                        <li><a href="workspace/?link=user_login"><i class="fa fa-unlock-alt"></i> Connexion</a></li>
+                        <li><a href="workspace/?link=user_register"><i class="fa fa-user-plus"></i> Inscription</a></li>
                     </ul>
                 </li>
                 <!-- /Account -->

@@ -1,36 +1,15 @@
 <?php 
-$res = $db->getCountAnnonceurs();
+$res = $db->getCountUserCars($_SESSION['ID']);
 if (mysqli_num_rows($res) > 0) {
     while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['annonceurs']=$row["stats"];
+      $_SESSION['cars']=$row["stats"];
     }
 }
 
-$res = $db->getCountProducts();
+$res = $db->getCountUserOrders($_SESSION['ID']);
 if (mysqli_num_rows($res) > 0) {
     while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['products']=$row["stats"];
-    }
-}
-
-$res = $db->getCountAdmins();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['admins']=$row["stats"];
-    }
-}
-
-$res = $db->getCountMarques();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['marques']=$row["stats"];
-    }
-}
-
-$res = $db->getCountFabricants();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['fabricants']=$row["stats"];
+      $_SESSION['orders']=$row["stats"];
     }
 }
 ?>
@@ -60,12 +39,12 @@ Author: SAEROX
         <div class="page bg-2 rounded-widget">
             <!-- Begin Header -->
             <?php
-                include 'include/header.php';
+                include 'include/header_user.php';
             ?>
             <!-- Begin Page Content -->
             <div class="page-content d-flex align-items-stretch">
                 <?php
-                    include 'include/admin_navigation.php';
+                    include 'include/user_navigation.php';
                 ?>
                 <!-- End Left Sidebar -->
                 <div class="content-inner compact">
@@ -77,8 +56,7 @@ Author: SAEROX
 	                                <h2 class="page-header-title">Tableau de bord</h2>
 	                                <div>
 	                                <div class="page-header-tools">
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-annonceur">Ajouter un annonceur</button>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-product">Ajouter une pièce</button>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-new-car">Enregistrer un véhicule</button>
 	                                </div>
 	                                </div>
 	                            </div>
@@ -86,10 +64,8 @@ Author: SAEROX
                         </div>
                         <!-- End Page Header -->
                         <?php
-                            include 'include/admin_stats.php';
-                            include 'include/modal_add_annonceur.php';
-                            include 'include/modal_add_administrateur.php';
-                            include 'include/modal_add_product.php';
+                            include 'include/user_stats.php';
+                            include 'include/modal_add_car.php';
                         ?>
                     </div>
                     <!-- End Container -->

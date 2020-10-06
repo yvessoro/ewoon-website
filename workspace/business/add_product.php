@@ -25,6 +25,11 @@ if (isset($_POST["designation"]) and isset($_POST["description"]) and isset($_PO
     $idmarque = $_POST["idmarque"];
     $idfabricant = $_POST["idfabricant"];
     $idversion = $_POST["idversion"];
+    if($_SESSION['CONNECTED'] == "ADMIN"){
+        $idConnected=null;
+    }else{
+        $idConnected=$_SESSION['ID'];
+    }
 
     // File upload configuration
     $targetDir = "../upload/";
@@ -44,11 +49,19 @@ if (isset($_POST["designation"]) and isset($_POST["description"]) and isset($_PO
                 // Upload file to server
                 if(move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)){
                     // Image db insert sql
-                    $res = $db->createProduct($id, addslashes($designation),addslashes($description),$reference,$prix,$poids,$fileName, addslashes($commentaire), $idtypeProduit, $idmodele,$idcarburant,$idetatProduit,$idmarque,$idfabricant,$_SESSION['ID'],$idversion);
+                    $res = $db->createProduct($id, addslashes($designation),addslashes($description),$reference,$prix,$poids,$fileName, addslashes($commentaire), $idtypeProduit, $idmodele,$idcarburant,$idetatProduit,$idmarque,$idfabricant,$idConnected,$idversion);
                     if($res == SUCCESS){
-                        redirect("../?link=annonceur_products&error=false");
+                        if($_SESSION['CONNECTED'] == "ADMIN"){
+                            redirect("../?link=admin_products&error=false");
+                        }else{
+                            redirect("../?link=annonceur_products&error=false");
+                        }
                     }else{
-                        redirect("../?link=annonceur_products&error=true"); 
+                        if($_SESSION['CONNECTED'] == "ADMIN"){
+                            redirect("../?link=admin_products&error=true");
+                        }else{
+                            redirect("../?link=annonceur_products&error=true");
+                        } 
                     }
                     //pushNotification();
                 }else{
@@ -59,15 +72,27 @@ if (isset($_POST["designation"]) and isset($_POST["description"]) and isset($_PO
             }
         }
     }else{
-        $res = $db->createProduct($id, addslashes($designation),addslashes($description),$reference,$prix,$poids,$fileName, addslashes($commentaire), $idtypeProduit, $idmodele,$idcarburant,$idetatProduit,$idmarque,$idfabricant,$_SESSION['ID'],$idversion);
+        $res = $db->createProduct($id, addslashes($designation),addslashes($description),$reference,$prix,$poids,$fileName, addslashes($commentaire), $idtypeProduit, $idmodele,$idcarburant,$idetatProduit,$idmarque,$idfabricant,$idConnected,$idversion);
         if($res == SUCCESS){
-            redirect("../?link=annonceur_products&error=false");
+            if($_SESSION['CONNECTED'] == "ADMIN"){
+                redirect("../?link=admin_products&error=false");
+            }else{
+                redirect("../?link=annonceur_products&error=false");
+            }
         }else{
-            redirect("../?link=annonceur_products&error=true"); 
+            if($_SESSION['CONNECTED'] == "ADMIN"){
+                redirect("../?link=admin_products&error=true");
+            }else{
+                redirect("../?link=annonceur_products&error=true");
+            }
         }
     }
 } else {
     // login details missing
-    redirect("../?link=annonceur_products&error=true");
+    if($_SESSION['CONNECTED'] == "ADMIN"){
+        redirect("../?link=admin_products&error=true");
+    }else{
+        redirect("../?link=annonceur_products&error=true");
+    }
 }
 ?>

@@ -1,39 +1,3 @@
-<?php 
-$res = $db->getCountAnnonceurs();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['annonceurs']=$row["stats"];
-    }
-}
-
-$res = $db->getCountProducts();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['products']=$row["stats"];
-    }
-}
-
-$res = $db->getCountAdmins();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['admins']=$row["stats"];
-    }
-}
-
-$res = $db->getCountMarques();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['marques']=$row["stats"];
-    }
-}
-
-$res = $db->getCountFabricants();
-if (mysqli_num_rows($res) > 0) {
-    while ($row = mysqli_fetch_array($res)) {
-      $_SESSION['fabricants']=$row["stats"];
-    }
-}
-?>
 <!DOCTYPE html>
 <!--
 Item Name: Elisyam - Web App & Admin Dashboard Template
@@ -65,7 +29,7 @@ Author: SAEROX
             <!-- Begin Page Content -->
             <div class="page-content d-flex align-items-stretch">
                 <?php
-                    include 'include/admin_navigation.php';
+                    include 'include/user_navigation.php';
                 ?>
                 <!-- End Left Sidebar -->
                 <div class="content-inner compact">
@@ -74,22 +38,19 @@ Author: SAEROX
                         <div class="row">
                             <div class="page-header">
 	                            <div class="d-flex align-items-center">
-	                                <h2 class="page-header-title">Tableau de bord</h2>
-	                                <div>
-	                                <div class="page-header-tools">
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-annonceur">Ajouter un annonceur</button>
-                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-product">Ajouter une pièce</button>
-	                                </div>
-	                                </div>
+	                                <h2 class="page-header-title">Gestion des véhicules</h2>
+                                    <div>
+                                        <div class="page-header-tools">
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-new-car">Ajouter</button>
+                                        </div>
+                                    </div>
 	                            </div>
                             </div>
                         </div>
                         <!-- End Page Header -->
                         <?php
-                            include 'include/admin_stats.php';
-                            include 'include/modal_add_annonceur.php';
-                            include 'include/modal_add_administrateur.php';
-                            include 'include/modal_add_product.php';
+                            include 'include/user_cars.php';
+                            include 'include/modal_add_car.php';
                         ?>
                     </div>
                     <!-- End Container -->

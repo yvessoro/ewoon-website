@@ -2,6 +2,11 @@
 session_start();
 include_once 'workspace/business/db_manager/DbHandler.php';
 $db = new DbHandler();
+function redirect($url) {
+    echo "<script language=javascript>";
+    echo "window.location.href = '" . $url . "';";
+    echo "</script>";
+}
 ?>
 <!doctype html>
 <html>

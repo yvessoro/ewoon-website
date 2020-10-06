@@ -11,10 +11,10 @@ define('DB_NAME', 'unique_cooki');
 /**
  * Online Database configuration
  */
-/*define('DB_USERNAME', 'uniqu1056972');
-define('DB_PASSWORD', 'hirweq5osu');
-define('DB_HOST', '185.98.131.94');
-define('DB_NAME', 'uniqu1056972_8wtcxf');*/
+/*define('DB_USERNAME', 'ewoon1407431');
+define('DB_PASSWORD', 'pyrvvykibc');
+define('DB_HOST', '91.216.107.182');
+define('DB_NAME', 'ewoon1407431');*/
 
 define('FAILED', 0);
 define('SUCCESS', 1);

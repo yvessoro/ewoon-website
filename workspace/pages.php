@@ -18,6 +18,10 @@ elseif (@$_REQUEST[link]=="annonceur_products"){if(!isset($_SESSION['ID'])) {inc
 elseif (@$_REQUEST[link]=="admins"){if(!isset($_SESSION['ID'])) {include('pages/login.php');}else{include('pages/admin/liste_administrateurs.php');}}
 elseif (@$_REQUEST[link]=="profile"){if(!isset($_SESSION['ID'])) {include('pages/login.php');}else{include('pages/profile.php');}}
 elseif (@$_REQUEST[link]=="dashboard"){if(!isset($_SESSION['ID'])) {include('pages/login.php');}else{include('pages/annonceur/dashboard.php');}}
+elseif (@$_REQUEST[link]=="user_register"){include('pages/register.php');}
+elseif (@$_REQUEST[link]=="user_login"){include('pages/login_user.php');}
+elseif (@$_REQUEST[link]=="user_dashboard"){if(!isset($_SESSION['ID'])) {include('pages/login_user.php');}else{include('pages/user/dashboard.php');}}
+elseif (@$_REQUEST[link]=="user_cars"){if(!isset($_SESSION['ID'])) {include('pages/login_user.php');}else{include('pages/user/liste_cars.php');}}
 elseif (@$_REQUEST[link]=="404"){include('pages/404.php');}
 
 else{include('pages/login.php');}

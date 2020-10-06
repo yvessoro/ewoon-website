@@ -6,12 +6,12 @@
 				<div class="category-nav show-on-click">
                     <span class="category-header">Recherche <i class="fa fa-list"></i></span>
                     <div class="category-list"></br>
-                        <form>
+                        <form action="?link=product" method="post">
                             <h4 class="footer-header">RÉFÉRENCE DE PIECE</h4>
                             <div class="form-group">
-                                <input class="input" placeholder="Référence de la pièce">
+                                <input class="input" placeholder="Référence de la pièce" name="reference" id="reference">
                             </div>
-                            <button class="primary-btn">Rechercher la pièce</button>
+                            <button class="primary-btn search-btn">Rechercher</button>
                         </form> </br></br>
                         <form>
                             <h4 class="footer-header">IMMATRICULATION / VIN</h4>
@@ -36,10 +36,10 @@
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                     <li><a href="?link=home">Accueil</a></li>
-                    <li><a href="?link=products">Pneus et chaines</a></li>
-                    <li><a href="?link=products">Batteries de démarrage</a></li>
-                    <li><a href="?link=products">Huiles moteur</a></li>
-                    <li><a href="?link=products">Accessoires auto</a></li>
+                    <li><a href="?link=products&cat=">Trouvez une pièce</a></li>
+                    <li><a href="?link=products&cat=">Les plus recherchés</a></li>
+                    <li><a href="?link=products&cat=621890821">Huiles moteur</a></li>
+                    <li><a href="?link=products&cat=923976707">Accessoires auto</a></li>
                 </ul>
             </div>
             <!-- menu nav -->

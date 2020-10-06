@@ -1,7 +1,13 @@
 <div id="store">
 	<!-- row -->
 	<div class="row">
-	<?php $res = $db->getAllProducts();
+	<?php 
+	if(isset($_GET["cat"])){
+		$res = $db->getAllProductsValidatedByCat($_GET["cat"]);
+	}else{
+		$res = $db->getAllProductsValidated();
+	}
+
 	if (mysqli_num_rows($res) > 0) {
 		while ($row = mysqli_fetch_array($res)) {
 			$id = $row["idproduit"];
@@ -20,6 +26,14 @@
 			$fabricant = stripslashes($row["fabricant"]);
 			$version = stripslashes($row["version"]);
 			$annonceur = stripslashes($row["nom"]." ".$row["prenom"]);
+			$res1 = $db->getAnnonceurByProduct($row["idannonceur"]);
+			if (mysqli_num_rows($res1) > 0) {
+				while ($rowA = mysqli_fetch_array($res1)) {
+					$annonceur = stripslashes($rowA["nom"]." ".$rowA["prenom"]);
+				}
+			}else{
+				$annonceur = "EWOON";
+			}
 		?>
 		<!-- Product Single -->
 		<div class="col-md-4 col-sm-6 col-xs-6">
@@ -28,11 +42,11 @@
 					<div class="product-label">
 						<span><?php echo $etat; ?></span>
 					</div>
-					<button class="main-btn quick-view"><i class="fa fa-search-plus"></i>Afficher</button>
+					<button class="main-btn quick-view"><a href="?link=product&id=<?php echo $id; ?>"><i class="fa fa-search-plus"></i>Afficher</a></button>
 					<img src="workspace/upload/<?php echo $filename; ?>" alt="">
 				</div>
 				<div class="product-body">
-					<h2 class="product-name"><a href="#"><?php echo $designation; ?></a></h2>
+					<h2 class="product-name"><a href="?link=product&id=<?php echo $id; ?>"><?php echo $designation; ?></a></h2>
 					<h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
 					<div class="product-rating">
 						<i class="fa fa-star"></i>

@@ -51,7 +51,10 @@
 	<!-- /section partners -->
 
 	<!-- HOME SLIDERS -->
-	<?php include 'include/infos.php'; ?>
+	<?php 
+		include 'include/infos.php'; 
+		include 'include/modal_login.php';
+	?>
 	<!-- /HOME SLIDERS -->
 
 	<!-- FOOTER -->
