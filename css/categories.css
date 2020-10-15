@@ -1,10 +1,10 @@
 .show{
-    background-color: #ffffff;
+    background-color: transparent;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 5px;
-    color: #000070;
+    color: #ffffff;
 }
 
 .show:hover ul.list-categories{
@@ -25,7 +25,7 @@
   }
 
   .list-categories a {
-    color: #000070;
+    color: #000000;
     -webkit-transition: 0.3s color;
     transition: 0.3s color;
     background-color: transparent;

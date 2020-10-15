@@ -36,10 +36,10 @@
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                     <li><a href="?link=home">Accueil</a></li>
-                    <li><a href="?link=products&cat=">Trouvez une pièce</a></li>
-                    <li><a href="?link=products&cat=">Les plus recherchés</a></li>
-                    <li><a href="?link=products&cat=621890821">Huiles moteur</a></li>
-                    <li><a href="?link=products&cat=923976707">Accessoires auto</a></li>
+                    <li><a href="?link=home#car">Trouvez une pièce</a></li>
+                    <li><a href="?link=home#most_search">Les plus recherchés</a></li>
+                    <li><a href="?link=home#services">Nos services</a></li>
+                    <li><a href="?link=home#marques">Nos marques</a></li>
                 </ul>
             </div>
             <!-- menu nav -->

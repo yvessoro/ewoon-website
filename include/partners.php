@@ -1,4 +1,4 @@
-<div class="section">
+<div class="section" id="partners">
     <!-- container -->
     <div class="container">
         <!-- row -->

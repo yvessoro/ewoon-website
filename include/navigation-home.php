@@ -36,11 +36,11 @@
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
                     <li><a href="?link=home">Accueil</a></li>
-                    <li><a href="#">Trouvez une pièce</a></li>
-                    <li><a href="#">Les plus recherchés</a></li>
-                    <li><a href="#">Nos services</a></li>
+                    <li><a href="#category">Trouvez une pièce</a></li>
+                    <li><a href="#most_search">Les plus recherchés</a></li>
+                    <li><a href="#services">Nos services</a></li>
                     <!--<li><a href="?link=products&cat=621890821">Huiles moteur</a></li>-->
-                    <li><a href="#">Nos marques</a></li>
+                    <li><a href="#marques">Nos marques</a></li>
                     <li><a href="#">Qui sommes-nous ?</a></li>
                 </ul>
             </div>
