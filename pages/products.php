@@ -9,7 +9,7 @@
 	<!-- HEADER -->
 	<header>
 		<!-- top Header -->
-		<?php include 'inlude/top-header.php'; ?>
+		<?php include 'include/top-header.php'; ?>
 		<!-- /top Header -->
 
 		<!-- header -->

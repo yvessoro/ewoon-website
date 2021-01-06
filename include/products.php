@@ -8,7 +8,7 @@
 		$res = $db->getAllProductsValidated();
 	}
 
-	if (mysqli_num_rows($res) > 0) {
+	if (mysqli_num_rows($res) > 0) { 
 		while ($row = mysqli_fetch_array($res)) {
 			$id = $row["idproduit"];
 			$filename = $row["photo"];

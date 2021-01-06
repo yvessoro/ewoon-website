@@ -29,6 +29,8 @@
 <link type="text/css" rel="stylesheet" href="css/car_map.css" />
 <link type="text/css" rel="stylesheet" href="css/custom_select.css" />
 <link type="text/css" rel="stylesheet" href="css/categories.css" />
+<link type="text/css" rel="stylesheet" href="css/top_search.css" />
+<link type="text/css" rel="stylesheet" href="css/search_form.css" />
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

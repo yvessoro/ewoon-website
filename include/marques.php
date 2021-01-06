@@ -1,49 +1,53 @@
-<div class="section section-grey" id="marques">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- section-title -->
-				<div class="col-md-12">
-					<div class="section-title">
-						<h2 class="title">Nos marques</h2>
-					</div>
-				</div>
-				<!-- /section-title -->
-				<!-- banner -->
-				<div class="col-md-8">
-					<div class="banner banner-1">
-						<img src="workspace/upload/all.png" alt="">
-						<div class="banner-caption text-center">
-							<a class="primary-btn" href="?link=products">Voir les pièces</a>
-						</div>
-					</div>
-				</div>
-				<!-- /banner -->
+<div class="section" id="partners">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- section-title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="title">Nos Marques</h2>
+                </div>
+            </div>
+            <!-- /section-title -->
 
-				<?php
-                    $res = $db->getLatestMarques();
-                    if (mysqli_num_rows($res) > 0) {
-                        while ($row = mysqli_fetch_array($res)) {
-                            $id = $row["idmarque"];
-                            $nom = stripslashes($row["libelle"]);
-							$filename = $row["photo"];
-                            ?>
-						<!-- banner -->
-						<div class="col-md-4">
-							<a class="banner banner-1" href="#">
-                                <img src="workspace/upload/<?php echo $filename; ?>" alt="">
-								<div class="banner-caption text-center">
-									<h6 class="primary-btn">Voir</h6>
-								</div>
-							</a>
-						</div>
-						<!-- /banner -->
-				<?php }
-                    } ?>
+            <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-centered">
 
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
+                    <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="5000">
+                        <div class="carousel-inner">
+						<?php
+							$res = $db->getLatestMarques();
+							$pos=0;
+                    		if (mysqli_num_rows($res) > 0) {
+                        		while ($row = mysqli_fetch_array($res)) {
+                            		$id = $row["idmarque"];
+                            		$nom = stripslashes($row["libelle"]);
+									$filename = $row["photo"];
+                                    if($pos==0){?>
+									<div class="item active">
+										<?php } else { ?>
+											<div class="item">
+											<?php }
+											 $pos=1; ?>
+										<div class="carousel-col">
+											<div class="block grey img-responsive">
+												<img src="workspace/upload/<?php echo $filename; ?>" alt="" style="width: 150px; height: 70px;">
+											</div>
+										</div>
+									</div>
+							<?php }
+                    		} ?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+</div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>

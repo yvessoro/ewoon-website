@@ -26,8 +26,8 @@
 						<h4 class="footer-header">RECHERCHE PAR VÉHICULE</h4>
 						<div class="row containerSelect" style="margin-top:-10px;">
 							<div class="col-4" >
-								<div class="custom-select" style="margin-left:5px;">
-									<select>
+								<div class="select-wrapper" style="margin-left:5px;">
+									<select class="select">
 										<option value="0">Marques</option>
 										<?php
 											$res = $db->getAllMarques();
@@ -45,14 +45,14 @@
 								</div>
 							</div>
 							<div class="col-4">
-								<div class="custom-select">
+								<div>
 									<select>
 										<option value="0">Modèle</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-4">
-								<div class="custom-select">
+								<div>
 									<select>
 										<option value="0">Motorisation</option>
 									</select>

@@ -27,7 +27,7 @@
 	<!-- /HOME SLIDERS -->
 
 	<!-- section partners --><br>
-	<?php include 'include/slideshow.php'; ?>
+	<?php //include 'include/slideshow.php'; ?>
 	<!-- /section partners -->
 
 	<!-- section partners -->

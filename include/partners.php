@@ -20,35 +20,35 @@
                             <div class="item active">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
-
+                                        <img src="img/partner_bosch.png" alt="" style="width: 150px; height: 70px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
-
+                                        <img src="img/partner_febi.png" alt="" style="width: 150px; height: 70px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
-
+                                        <img src="img/partner_filter.png" alt="" style="width: 150px; height: 70px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
-
+                                        <img src="img/partner_japanparts.png" alt="" style="width: 150px; height: 70px;">
                                     </div>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
-
+                                        <img src="img/partner_valeo.png" alt="" style="width: 150px; height: 70px;">
                                     </div>
                                 </div>
                             </div>
