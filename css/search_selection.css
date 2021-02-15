@@ -1,0 +1,95 @@
+/* Reset Select */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 1 !important;
+    border-color: #DADADA;
+    background: #ffffff;
+    background-image: none;
+    color: black;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+    display: none;
+  }
+  /* Custom Select */
+  .select {
+    position: relative;
+    display: flex;
+    width: 13em;
+    height: 3em;
+    line-height: 3;
+    background: #ffffff;
+    color: black;
+    overflow: hidden;
+    border-radius: .25em;
+    border-color: #DADADA;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: black;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #F8694A;
+    color: #ffffff;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+    color: #ffffff;
+  }
+
+  /* Custom Select */
+  .selectnav {
+    position: relative;
+    display: flex;
+    width: 17.5em;
+    height: 3em;
+    line-height: 3;
+    background: #ffffff;
+    color: black;
+    overflow: hidden;
+    border-radius: .25em;
+    border-color: #DADADA;
+  }
+  selectnav {
+    flex: 1;
+    padding: 0 .5em;
+    color: black;
+    cursor: pointer;
+  }
+  /* Arrow */
+  .selectnav::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #F8694A;
+    color: #ffffff;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  /* Transition */
+  .selectnav:hover::after {
+    color: #ffffff;
+  }

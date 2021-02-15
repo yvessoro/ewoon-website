@@ -12,6 +12,18 @@
         <div class="pull-right">
             <ul class="header-btns">
                 <!-- Account -->
+                <li class="header-cars dropdown default-dropdown">
+                    <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                        <div class="header-btns-icon">
+                            <i class="fa fa-car"></i>
+                        </div>
+                        <strong class="text-uppercase">Mes véhicules</strong>
+                    </div>
+                    <!--<a href="workspace/?link=user_login" class="text-uppercase">Connexion</a>-->
+                </li>
+                <!-- /Account -->
+
+                <!-- Account -->
                 <li class="header-account dropdown default-dropdown">
                     <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                         <div class="header-btns-icon">
@@ -82,6 +94,20 @@
                     </div>
                 </li>
                 <!-- /Cart -->
+
+                <!-- Account -->
+                <li class="header-country dropdown default-dropdown">
+                    <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                        <div class="header-btns-icon">
+                        <i class="fa fa-globe"></i>
+                        </div>
+                        <strong class="text-uppercase">Pays <i class="fa fa-caret-down" style="color:#000000;"></i></strong>
+                    </div>
+                    <ul class="custom-menu">
+                        <li><a href="#">CI</a></li>
+                    </ul>
+                </li>
+                <!-- /Account -->
 
                 <!-- Mobile nav toggle-->
                 <li class="nav-toggle">

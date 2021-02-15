@@ -1,4 +1,4 @@
-<div class="section" id="partners">
+<div class="section" id="marques">
     <!-- container -->
     <div class="container">
         <!-- row -->
@@ -18,7 +18,7 @@
                     <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="5000">
                         <div class="carousel-inner">
 						<?php
-							$res = $db->getLatestMarques();
+							$res = $db->getAllMarques();
 							$pos=0;
                     		if (mysqli_num_rows($res) > 0) {
                         		while ($row = mysqli_fetch_array($res)) {
@@ -33,7 +33,7 @@
 											 $pos=1; ?>
 										<div class="carousel-col">
 											<div class="block grey img-responsive">
-												<img src="workspace/upload/<?php echo $filename; ?>" alt="" style="width: 150px; height: 70px;">
+                                                <a href="?link=products&idmarque=<?php echo $id; ?>"><img src="workspace/upload/<?php echo $filename; ?>" alt="" style="width: 150px; height: 70px;"></a>
 											</div>
 										</div>
 									</div>

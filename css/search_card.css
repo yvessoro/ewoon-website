@@ -4,7 +4,7 @@
     border-radius: 2px;
     padding:16px;
     width: 350px;
-    height: 160px;
+    height: 150px;
     display: inline-block;
     background: #ffffff;
 }
@@ -16,8 +16,9 @@
     padding:16px;
     margin-left: 10px;
     margin-right: 10px;
-    height: 160px;
+    height: 150px;
     background: #ffffff;
+    vertical-align: middle;
 }
 
 .card:hover {
@@ -26,8 +27,4 @@
 
 img {
     border-radius: 5px 5px 0 0;
-}
-
-.container {
-    padding: 2px 16px;
 }

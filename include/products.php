@@ -1,9 +1,13 @@
 <div id="store">
-	<!-- row -->
-	<div class="row">
-	<?php 
+    <!-- row -->
+    <div class="row">
+        <?php 
 	if(isset($_GET["cat"])){
 		$res = $db->getAllProductsValidatedByCat($_GET["cat"]);
+	}else if(isset($_POST["marque"]) and isset($_POST["modele"]) and isset($_POST["motorisation"])){ 
+		$res = $db->getAllProductsValidatedByCarInfos($_POST["marque"], $_POST["modele"], $_POST["motorisation"]);
+	}else if(isset($_GET["idmarque"])){ 
+		$res = $db->getAllProductsValidatedByMarque($_GET["idmarque"]);
 	}else{
 		$res = $db->getAllProductsValidated();
 	}
@@ -35,36 +39,41 @@
 				$annonceur = "EWOON";
 			}
 		?>
-		<!-- Product Single -->
-		<div class="col-md-4 col-sm-6 col-xs-6">
-			<div class="product product-single">
-				<div class="product-thumb">
-					<div class="product-label">
-						<span><?php echo $etat; ?></span>
-					</div>
-					<button class="main-btn quick-view"><a href="?link=product&id=<?php echo $id; ?>"><i class="fa fa-search-plus"></i>Afficher</a></button>
-					<img src="workspace/upload/<?php echo $filename; ?>" alt="">
-				</div>
-				<div class="product-body">
-					<h2 class="product-name"><a href="?link=product&id=<?php echo $id; ?>"><?php echo $designation; ?></a></h2>
-					<h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
-					<div class="product-rating">
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star"></i>
-						<i class="fa fa-star-o empty"></i>
-					</div>
-					<h2 class="product-name"><a href="#"><?php echo $marque; ?> | <?php echo $modele; ?></a></h2>
-					<div class="product-btns">
-						<button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Product Single -->
-			<?php }
-		} ?>
-	</div>
-	<!-- /row -->
+        <!-- Product Single -->
+        <div class="col-md-4 col-sm-6 col-xs-6">
+            <div class="product product-single">
+                <div class="product-thumb">
+                    <div class="product-label">
+                        <span><?php echo $etat; ?></span>
+                    </div>
+                    <button class="main-btn quick-view"><a href="?link=product&id=<?php echo $id; ?>"><i
+                                class="fa fa-search-plus"></i>Afficher</a></button>
+                    <img src="workspace/upload/<?php echo $filename; ?>" alt="">
+                </div>
+                <div class="product-body">
+                    <h2 class="product-name"><a
+                            href="?link=product&id=<?php echo $id; ?>"><?php echo $designation; ?></a></h2>
+                    <h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
+                    <div class="product-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o empty"></i>
+                    </div>
+                    <h2 class="product-name"><a href="#"><?php echo $marque; ?> | <?php echo $modele; ?></a></h2>
+                    <div class="product-btns">
+                        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Ajouter au
+                            panier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Product Single -->
+        <?php }
+		} else{ ?>
+        <h3 class="product-price text-uppercase text-center primary-color">Aucun produit disponible</h3>
+        <?php } ?>
+    </div>
+    <!-- /row -->
 </div>

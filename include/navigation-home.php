@@ -42,6 +42,7 @@
                     <!--<li><a href="?link=products&cat=621890821">Huiles moteur</a></li>-->
                     <li><a href="#marques">Nos marques</a></li>
                     <li><a href="#">Qui sommes-nous ?</a></li>
+                    <li><a href="#">Catalogue de pièces</a></li>
                 </ul>
             </div>
             <!-- menu nav -->

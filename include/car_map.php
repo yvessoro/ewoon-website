@@ -42,11 +42,9 @@
                     <div class="custom-select tag" style="margin-top: 105px;margin-left: 760px">
                         <div class="show"><u>Jantes</u>
                             <ul class="list-categories" style="background-color: #ffffff;margin-left: -10px;margin-right: -10px;margin-bottom: -10px;padding: 10px;">
-                                <li><a href="#"> » Balai d'essuie-glace </a></li>
-                                <li><a href="#"> » Vérin de hayon, de coffre </a></li>
-                                <li><a href="#"> » Mécanisme de lève-vitre </a></li>
-                                <li><a href="#"> » Pompe de lave-glace </a></li>
-                                <li><a href="#"> » Moteur d'essuie-glace </a></li>
+                                <li><a href="#"> » Capteur de roue </a></li>
+                                <li><a href="#"> » Enjoliveur, roue</a></li>
+                                <li><a href="#"> » Boulon de roue </a></li>
                             </ul> 
                         </div>
                     </div>
@@ -65,7 +63,7 @@
                     <div class="custom-select tag" style="margin-top: 495px;margin-left: 160px">
                         <div class="show"><u>Huiles</u>
                             <ul class="list-categories" style="background-color: #ffffff;margin-left: -10px;margin-right: -10px;margin-bottom: -10px;padding: 10px;">
-                                <li><a href="?link=products&cat=621890821"> » Huile moteur </a></li>
+                                <li><a href="?link=products&cat=621890821&categorie=Huile moteur"> » Huile moteur </a></li>
                                 <li><a href="#"> » Huile de direction </a></li>
                                 <li><a href="#"> » Huile de frein </a></li>
                                 <!--<li><a href="#"> » Vérin de hayon, de coffre </a></li>

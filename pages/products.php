@@ -2,122 +2,200 @@
 <html lang="en">
 
 <head>
-	<?php include 'include/metas.php'; ?>
+    <?php include 'include/metas.php'; ?>
 </head>
 
 <body>
-	<!-- HEADER -->
-	<header>
-		<!-- top Header -->
-		<?php include 'include/top-header.php'; ?>
-		<!-- /top Header -->
+    <!-- HEADER -->
+    <header>
+        <!-- top Header -->
+        <?php include 'include/top-header.php'; ?>
+        <!-- /top Header -->
 
-		<!-- header -->
-		<?php include 'include/header.php'; ?>
-		<!-- container -->
-	</header>
-	<!-- /HEADER -->
+        <!-- header -->
+        <?php include 'include/header.php'; ?>
+        <!-- container -->
+    </header>
+    <!-- /HEADER -->
 
-	<!-- NAVIGATION -->
-	<?php include 'include/navigation.php'; ?>
-	<!-- /NAVIGATION -->
+    <!-- NAVIGATION -->
+    <?php include 'include/navigation.php'; ?>
+    <!-- /NAVIGATION -->
 
-	<!-- BREADCRUMB -->
-	<div id="breadcrumb">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="#">Pièces</a></li>
-				<li class="active">Pneus et chaines</li>
-			</ul>
-		</div>
-	</div>
-	<!-- /BREADCRUMB -->
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Pièces</a></li>
+                <?php 
+					if(isset($_GET["categorie"])){
+						$categorie = $_GET["categorie"];
+					}else{
+						$categorie="Recherche";
+					}
+				?>
+                <li class="active"><?php echo $categorie; ?></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /BREADCRUMB -->
 
-	<!-- section -->
-	<div class="section">
-		<!-- container -->
-		<div class="container">
-			<!-- row -->
-			<div class="row">
-				<!-- ASIDE -->
-				<div id="aside" class="col-md-3">
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- ASIDE -->
+                <div id="aside" class="col-md-3">
+                    <div class="aside" style="padding:10px;">
+                        <form action="?link=product" method="post">
+                            <h4 class="footer-header">RECHERCHE PAR REFERENCE</h4>
+                            <div class="form-group">
+                                <input class="input" placeholder="Référence de la pièce" name="reference"
+                                    id="reference">
+                            </div>
+                            <div class="form-group">
+                                <input class="input" placeholder="Immatriculation / numéro chassis">
+                            </div>
+                            <button class="primary-btn search-btn"><i class="fa fa-search"></i> Rechercher</button>
+                        </form> </br></br>
+                        <form>
+                            <h4 class="footer-header">RECHERCHE PAR VEHICULE</h4>
+                            <div class="selectnav">
+                                <select name="marque" id="marque">
+                                    <option selected disabled>Marque</option>
+                                    <?php
+                                        $res = $db->getAllMarques();
+                                        if (mysqli_num_rows($res) > 0) {
+                                            while ($row = mysqli_fetch_array($res)) {
+                                                $id = $row["idmarque"];
+                                                $nom = $row["libelle"];
+                                                ?>
+                                    <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
+                                    <?php
+                                            }
+                                        } 
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="selectnav" style="margin-top:10px;">
+                                <select name="modele" id="modele">
+                                    <option selected disabled>Modèle/Année</option>
+                                    <?php
+                                        $res = $db->getAllModeles();
+                                        if (mysqli_num_rows($res) > 0) {
+                                            while ($row = mysqli_fetch_array($res)) {
+                                                $id = $row["idmodele"];
+                                                $nom = $row["libelle"];
+                                                $annee = $row["annee"];
+                                                ?>
+                                    <option value="<?php echo $id; ?>"><?php echo $nom." - ".$annee; ?></option>
+                                    <?php
+                                            }
+                                        } 
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="selectnav" style="margin-top:10px;">
+                                <select name="motorisation" id="motorisation">
+                                    <option selected disabled>Motorisation</option>
+                                    <?php
+                                        $res = $db->getAllCarburants();
+                                        if (mysqli_num_rows($res) > 0) {
+                                            while ($row = mysqli_fetch_array($res)) {
+                                                $id = $row["idcarburant"];
+                                                $nom = $row["libelle"];
+                                                ?>
+                                    <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
+                                    <?php
+                                            }
+                                        } 
+                                    ?>
+                                </select>
+                            </div>
+                            <button class="primary-btn search-btn" style="margin-top:10px;"><i class="fa fa-search"></i>
+                                Rechercher</button>
+                        </form>
+                        <h3 class="aside-title">Filtre par note</h3>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star" style="color:#FF9529;"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                                <i class="fa fa-star-o empty"></i>
+                            </div>
+                        </div>
+                        <h3 class="aside-title">Filtre par prix</h3>
+                        <div>
+                            <div id="slider-range" style="margin-left:10px;margin-right:10px;"></div>
+                            <span>Montant (FCFA)</span>
+                            <h4 class="example-val" id="slider-range-value">
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- aside widget -->
+                </div>
+                <!-- /ASIDE -->
 
-					<!-- aside widget -->
-					<div class="aside">
-						<h3 class="aside-title">Filtre par marques</h3>
-						<ul class="list-links">
-							<?php
-								$res = $db->getAllMarques();
-								if (mysqli_num_rows($res) > 0) {
-									while ($row = mysqli_fetch_array($res)) {
-										$id = $row["idmarque"];
-										$nom = $row["libelle"];
-										?>
-											<li><a href="?link=products&cat=<?php echo $_GET["cat"]; ?>&marques=<?php echo $id; ?>"><?php echo $nom; ?></a></li>
-										<?php
-									}
-								} 
-							?>
-						</ul>
-					</div>
-					<!-- /aside widget -->
-					<!-- aside widget -->
-					<div class="aside">
-						<h3 class="aside-title">Filtre par fabricants</h3>
-						<ul class="list-links">
-							<?php
-								$res = $db->getAllFabricants();
-								if (mysqli_num_rows($res) > 0) {
-									while ($row = mysqli_fetch_array($res)) {
-										$id = $row["idfabricant"];
-										$nom = $row["libelle"];
-										?>
-											<li><a href="?link=products&cat=<?php echo $_GET["cat"]; ?>&marques=<?php echo $id; ?>"><?php echo $nom; ?></a></li>
-										<?php
-									}
-								} 
-							?>
-						</ul>
-					</div>
-					<!-- /aside widget -->
-				</div>
-				<!-- /ASIDE -->
+                <!-- MAIN -->
+                <div id="main" class="col-md-9">
 
-				<!-- MAIN -->
-				<div id="main" class="col-md-9">
-					<!-- store top filter -->
-					<div class="store-filter clearfix">
-						<div class="pull-left">
-							<div class="sort-filter">
-								<span class="text-uppercase">Ordonner par:</span>
-								<select class="input">
-										<option value="0">Prix</option>
-										<option value="0">Notation</option>
-									</select>
-								<a href="#" class="main-btn icon-btn"><i class="fa fa-arrow-down"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /store top filter -->
+                    <!-- STORE -->
+                    <?php include 'include/products.php'; ?>
+                    <!-- /STORE -->
+                </div>
+                <!-- /MAIN -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /section -->
 
-					<!-- STORE -->
-					<?php include 'include/products.php'; ?>
-					<!-- /STORE -->
-				</div>
-				<!-- /MAIN -->
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->
-	</div>
-	<!-- /section -->
+    <!-- FOOTER -->
+    <?php include 'include/footer.php'; ?>
+    <!-- /FOOTER -->
 
-	<!-- FOOTER -->
-	<?php include 'include/footer.php'; ?>
-	<!-- /FOOTER -->
-
-	<!-- jQuery Plugins -->
-	<?php include 'include/js.php'; ?> 
+    <!-- jQuery Plugins -->
+    <?php include 'include/js.php'; ?>
 
 </body>
 

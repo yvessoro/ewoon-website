@@ -525,6 +525,20 @@ class DbHandler {
         return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion and p.idtypeProduit='$id'  and p.statut=1 order by p.designation");
     }
 
+    public function getAllProductsValidatedByCarInfos($idmarque, $idmodele, $idcarburant) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion and p.idmarque='$idmarque' and p.idmodele='$idmodele' and p.idcarburant='$idcarburant'  and p.statut=1 order by p.designation");
+    }
+
+    public function getAllProductsValidatedByMarque($idmarque) {
+        if (mysqli_connect_errno()) {
+            throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
+        }
+        return mysqli_query($this->conn, "SELECT p.idannonceur,p.idproduit, p.designation, p.description, p.reference, p.prix, p.poids, p.photo, p.statut, p.commentaire, tp.libelle as type, m.libelle as modele, c.libelle as carburant, ep.libelle as etat, ma.libelle as marque, f.libelle as fabricant,v.libelle as version, p.added_at FROM produit p,typeProduit tp,modele m,carburant c,etatProduit ep,marque ma,fabricant f,version v where p.idtypeProduit=tp.idtypeProduit and p.idmodele=m.idmodele and p.idcarburant=c.idcarburant and p.idetatProduit=ep.idetatProduit and p.idmarque=ma.idmarque and p.idfabricant=f.idfabricant and p.idversion=v.idversion and p.idmarque='$idmarque' and p.statut=1 order by p.designation");
+    }
+
     public function getOffers() {
         if (mysqli_connect_errno()) {
             throw new Exception(mysqli_connect_error(), mysqli_connect_errno());
