@@ -1,10 +1,8 @@
 <!-- section partners -->
-<br>
-<?php include 'include/slideshow_top.php'; ?>
 <!-- /section partners -->
-<div id="home" style="text-align: center; padding-bottom:25px; padding-left:20px;">
+<div id="home" class="section-grey" style="text-align: center; padding-bottom:25px; padding-left:20px;">
     <!-- container -->
-    <div class="container">
+    <div class="container"><br>
         <!-- home wrap -->
         <div class="home-wrap">
             <div class="row">

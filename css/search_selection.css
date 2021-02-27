@@ -42,8 +42,9 @@ select {
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #F8694A;
-    color: #ffffff;
+    background: #DADADA;
+    border-color: #DADADA;
+    color: #F8694A;
     cursor: pointer;
     pointer-events: none;
     -webkit-transition: .25s all ease;
@@ -52,7 +53,7 @@ select {
   }
   /* Transition */
   .select:hover::after {
-    color: #ffffff;
+    color: #F8694A;
   }
 
   /* Custom Select */
@@ -81,8 +82,10 @@ select {
     top: 0;
     right: 0;
     padding: 0 1em;
-    background: #F8694A;
-    color: #ffffff;
+    background: #DADADA;
+    border: 1 !important;
+    border-color: #DADADA;
+    color: #F8694A;
     cursor: pointer;
     pointer-events: none;
     -webkit-transition: .25s all ease;
@@ -91,5 +94,5 @@ select {
   }
   /* Transition */
   .selectnav:hover::after {
-    color: #ffffff;
+    color: #F8694A;
   }
