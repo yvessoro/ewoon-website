@@ -9,3 +9,4 @@
 <script src="js/partners.js"></script>
 <script src="js/top_search.js"></script>
 <script src="js/price_slider.js"></script>
+<script src="js/categories.js"></script>

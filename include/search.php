@@ -10,7 +10,7 @@
             <div class="row">
                 <!-- banner -->
                 <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3 card">
-                    <form action="?link=#" method="post">
+                    <form action="?link=product" method="post">
                         <h4 class="footer-header">RECHERCHE PAR REFERENCE</h4>
                         <div class="row" style="margin-top:10px;text-align:center;">
                             <div class="col-md-7">
@@ -33,7 +33,7 @@
 
                 <!-- banner -->
                 <div class="col-md-8 col-md-offset-0 col-sm-6 col-sm-offset-3 card_middle">
-                    <form action="?link=products" method="post">
+                    <form action="?link=categories" method="post">
                         <h4 class="footer-header">RECHERCHE PAR VÉHICULE</h4>
                         <div class="row" style="margin-top:10px;text-align:center;">
                             <div class="col-md-9 col-md-offset-0 col-sm-6 col-sm-offset-3">

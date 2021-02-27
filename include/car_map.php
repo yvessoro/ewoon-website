@@ -72,10 +72,6 @@
                                 <li><a href="?link=oils"> » Huile moteur </a></li>
                                 <li><a href="?link=oils"> » Huile de direction </a></li>
                                 <li><a href="?link=oils"> » Huile de frein </a></li>
-                                <!--<li><a href="#"> » Vérin de hayon, de coffre </a></li>
-                                <li><a href="#"> » Mécanisme de lève-vitre </a></li>
-                                <li><a href="#"> » Pompe de lave-glace </a></li>
-                                <li><a href="#"> » Moteur d'essuie-glace </a></li>-->
                             </ul>
                         </div>
                     </div>
