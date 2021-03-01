@@ -1335,11 +1335,13 @@ textarea.input {
 }
 
 #product-view .product-view {
-  padding: 7.5px;
+  width: 100px;
+  height: 100px;
 }
 
 .product-view>img {
-  width: 100%;
+  width: 250px;
+  height: 250px;
 }
 
 /*----------------------------*\

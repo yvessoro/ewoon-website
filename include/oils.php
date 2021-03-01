@@ -30,13 +30,12 @@
                     <div class="product-label">
                         <span><?php echo $etat; ?></span>
                     </div>
-                    <button class="main-btn quick-view"><a href="?link=product&id=<?php echo $id; ?>"><i
+                    <button class="main-btn quick-view"><a href="?link=oil"><i
                                 class="fa fa-search-plus"></i>Afficher</a></button>
                     <img src="img/<?php echo $image; ?>" alt="">
                 </div>
                 <div class="product-body">
-                    <h2 class="product-name"><a
-                            href="?link=product&id=<?php echo $id; ?>"><?php echo $designation; ?></a></h2>
+                    <h2 class="product-name"><a href="?link=oil"><?php echo $designation; ?></a></h2>
                     <h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
                     <div class="product-rating">
                         <i class="fa fa-star"></i>
@@ -45,7 +44,8 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o empty"></i>
                     </div>
-                    <h2 class="product-name"><a href="#"><?php echo $typehuile; ?> | <?php echo $marque; ?></a></h2>
+                    <h2 class="product-name"><a href="?link=oil"><?php echo $typehuile; ?> | <?php echo $marque; ?></a>
+                    </h2>
                     <div class="product-btns">
                         <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Ajouter au
                             panier</button>
