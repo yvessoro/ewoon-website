@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'workspace/business/db_manager/DbHandler.php';
+include("include/tecdoc_api.php");
 $db = new DbHandler();
 function redirect($url) {
     echo "<script language=javascript>";

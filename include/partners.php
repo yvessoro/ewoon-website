@@ -1,4 +1,5 @@
 <div class="section" id="partners">
+<?php include("tecdoc_getBrands.php");?>
     <!-- container -->
     <div class="container">
         <!-- row -->
@@ -17,7 +18,18 @@
 
                     <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="5000">
                         <div class="carousel-inner">
-                            <div class="item active">
+                        <?php 
+                        $i=0;
+                        foreach ($brands->array as $brand) { ?>
+                            <div class="item <?php if($i==0){ ?> active <?php } $i=$i+1; ?>">
+                                <div class="carousel-col">
+                                    <div class="block img-responsive">
+                                        <img src="<?php echo $brand->dataSupplierLogo->imageURL400; ?>" alt="" style="width: 150px; height: 70px;">
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                            <!--<div class="item active">
                                 <div class="carousel-col">
                                     <div class="block grey img-responsive">
                                         <img src="img/partner_bosch.png" alt="" style="width: 150px; height: 70px;">
@@ -52,7 +64,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <!-- Controls --
                         <div class="left carousel-control">

@@ -3,7 +3,8 @@
     <div class="row">
         <?php 
 	if(isset($_GET["cat"])){
-		$res = $db->getAllProductsValidatedByCat($_GET["cat"]);
+		$category = $_GET["cat"];
+        include("tecdoc_getProductsByCategory.php");
 	}else if(isset($_POST["marque"]) and isset($_POST["modele"]) and isset($_POST["motorisation"])){ 
 		$res = $db->getAllProductsValidatedByCarInfos($_POST["marque"], $_POST["modele"], $_POST["motorisation"]);
 	}else if(isset($_GET["idmarque"])){ 
@@ -12,48 +13,35 @@
 		$res = $db->getAllProductsValidated();
 	}
 
-	if (mysqli_num_rows($res) > 0) { 
-		while ($row = mysqli_fetch_array($res)) {
-			$id = $row["idproduit"];
-			$filename = $row["photo"];
-			$designation = stripslashes($row["designation"]);
-			$description = stripslashes($row["description"]);
-			$reference = stripslashes($row["reference"]);
-			$prix = stripslashes($row["prix"]);
-			$poids = stripslashes($row["poids"]);
-			$statut = stripslashes($row["statut"]);
-			$type = stripslashes($row["type"]);
-			$modele = stripslashes($row["modele"]);
-			$carburant = stripslashes($row["carburant"]);
-			$etat = stripslashes($row["etat"]);
-			$marque = stripslashes($row["marque"]);
-			$fabricant = stripslashes($row["fabricant"]);
-			$version = stripslashes($row["version"]);
-			$annonceur = stripslashes($row["nom"]." ".$row["prenom"]);
-			$res1 = $db->getAnnonceurByProduct($row["idannonceur"]);
-			if (mysqli_num_rows($res1) > 0) {
-				while ($rowA = mysqli_fetch_array($res1)) {
-					$annonceur = stripslashes($rowA["nom"]." ".$rowA["prenom"]);
-				}
-			}else{
-				$annonceur = "EWOON";
-			}
+	if (count($articles) > 0) { 
+		foreach ($articles as $article) {
+            $reference=$article->articleNumber;
+            include("tecdoc_getProduct.php");
+            foreach ($data->array as $product) {
+                $productName=$product->articleName;
+                $brandName=$product->brandName;
+            }
+            foreach ($article->images as $image) {
+              $productImage=$image->imageURL800;
+              $productThumb=$image->imageURL200;
+            }
+
 		?>
         <!-- Product Single -->
         <div class="col-md-4 col-sm-6 col-xs-6">
             <div class="product product-single">
                 <div class="product-thumb">
                     <div class="product-label">
-                        <span><?php echo $etat; ?></span>
+                        <span><?php echo "Disponible"; ?></span>
                     </div>
-                    <button class="main-btn quick-view"><a href="?link=product&id=<?php echo $id; ?>"><i
+                    <button class="main-btn quick-view"><a href="?link=product&reference=<?php echo $reference; ?>"><i
                                 class="fa fa-search-plus"></i>Afficher</a></button>
-                    <img src="workspace/upload/<?php echo $filename; ?>" alt="">
+                    <img src="<?php if(empty($productImage)){ ?>img/main-product00.png<?php }else{echo $productImage;} ?>" alt="" width="200" height="200">
                 </div>
                 <div class="product-body">
                     <h2 class="product-name"><a
-                            href="?link=product&id=<?php echo $id; ?>"><?php echo $designation; ?></a></h2>
-                    <h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
+                            href="?link=product&reference=<?php echo $reference; ?>"><?php echo $productName; ?></a></h2>
+                    <h3 class="product-price"><?php echo "0"; ?> FCFA</h3>
                     <div class="product-rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -61,7 +49,7 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o empty"></i>
                     </div>
-                    <h2 class="product-name"><a href="#"><?php echo $marque; ?> | <?php echo $modele; ?></a></h2>
+                    <h2 class="product-brand"><?php echo $brandName; ?> | <?php echo $reference; ?></h2>
                     <div class="product-btns">
                         <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Ajouter au
                             panier</button>

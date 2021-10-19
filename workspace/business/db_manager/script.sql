@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 08, 2020 at 09:34 PM
--- Server version: 5.7.30
--- PHP Version: 7.4.9
+-- Generation Time: Jul 07, 2021 at 02:59 PM
+-- Server version: 5.7.32
+-- PHP Version: 7.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -101,11 +101,13 @@ CREATE TABLE `categorie` (
 --
 
 INSERT INTO `categorie` (`idcategorie`, `libelle`, `photo`, `statut`, `added_at`, `idAdministrateur`) VALUES
-(47666582, 'Moteur', '1598614018.jpg', 1, '2020-08-28 11:26:57', 9872456),
-(156374282, 'Pneus et chaines', '1598614083.jpg', 1, '2020-08-28 11:28:03', 9872456),
-(293903174, 'Accessoires Auto', '1598614196.jpg', 1, '2020-08-28 11:29:56', 9872456),
-(475566219, 'Huiles moteur', '1598614116.jpg', 1, '2020-08-28 11:28:35', 9872456),
+(28164830, 'Pièces moteur', '1608300418.jpg', 1, '2020-12-18 14:06:57', 9872456),
+(47666582, 'Moteur', '1598614018.jpg', 0, '2020-08-28 11:26:57', 9872456),
+(156374282, 'Pneus et chaines', '1598614083.jpg', 0, '2020-08-28 11:28:03', 9872456),
+(293903174, 'Accessoires Auto', '1598614196.jpg', 0, '2020-08-28 11:29:56', 9872456),
+(475566219, 'Huiles moteur', '1598614116.jpg', 0, '2020-08-28 11:28:35', 9872456),
 (599173138, 'Moteur', NULL, 0, '2020-01-03 15:04:17', 9872456),
+(709731189, 'Electricité', '1608300460.jpg', 1, '2020-12-18 14:07:39', 9872456),
 (802787322, 'Electronique', '1598613924.png', 0, '2020-08-28 11:25:24', 9872456),
 (888681018, 'Electronique', NULL, 0, '2020-01-03 15:03:27', 9872456),
 (950325839, 'Electronique', '', 0, '2020-08-28 11:24:17', 9872456);

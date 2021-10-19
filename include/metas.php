@@ -36,6 +36,8 @@
 <link type="text/css" rel="stylesheet" href="css/custom_tab.css" />
 <link type="text/css" rel="stylesheet" href="css/products_categories.css" />
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

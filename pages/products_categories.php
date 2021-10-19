@@ -61,53 +61,16 @@
                             <div class="selectnav">
                                 <select name="marque" id="marque">
                                     <option selected disabled>Marque</option>
-                                    <?php
-                                        $res = $db->getAllMarques();
-                                        if (mysqli_num_rows($res) > 0) {
-                                            while ($row = mysqli_fetch_array($res)) {
-                                                $id = $row["idmarque"];
-                                                $nom = $row["libelle"];
-                                                ?>
-                                    <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
-                                    <?php
-                                            }
-                                        } 
-                                    ?>
                                 </select>
                             </div>
                             <div class="selectnav" style="margin-top:10px;">
                                 <select name="modele" id="modele">
                                     <option selected disabled>Modèle/Année</option>
-                                    <?php
-                                        $res = $db->getAllModeles();
-                                        if (mysqli_num_rows($res) > 0) {
-                                            while ($row = mysqli_fetch_array($res)) {
-                                                $id = $row["idmodele"];
-                                                $nom = $row["libelle"];
-                                                $annee = $row["annee"];
-                                                ?>
-                                    <option value="<?php echo $id; ?>"><?php echo $nom." - ".$annee; ?></option>
-                                    <?php
-                                            }
-                                        } 
-                                    ?>
                                 </select>
                             </div>
                             <div class="selectnav" style="margin-top:10px;">
                                 <select name="motorisation" id="motorisation">
                                     <option selected disabled>Motorisation</option>
-                                    <?php
-                                        $res = $db->getAllCarburants();
-                                        if (mysqli_num_rows($res) > 0) {
-                                            while ($row = mysqli_fetch_array($res)) {
-                                                $id = $row["idcarburant"];
-                                                $nom = $row["libelle"];
-                                                ?>
-                                    <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
-                                    <?php
-                                            }
-                                        } 
-                                    ?>
                                 </select>
                             </div>
                             <button class="primary-btn search-btn" style="margin-top:10px;"><i class="fa fa-search"></i>
@@ -192,6 +155,8 @@
 
     <!-- jQuery Plugins -->
     <?php include 'include/js.php'; ?>
+
+    <script src="js/searchbox.js"></script>
 
 </body>
 

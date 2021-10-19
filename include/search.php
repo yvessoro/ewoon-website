@@ -3,6 +3,12 @@
 <?php include 'include/slideshow_top.php'; ?>
 <!-- /section partners -->
 <div id="home" style="text-align: center; padding-bottom:25px; padding-left:20px;">
+    <?php include("tecdoc_getManufacturers.php");?>
+
+    <?php if(isset($_GET["marque"])){
+    $marque=$_GET["marque"];
+    include("tecdoc_getModels.php");
+}?>
     <!-- container -->
     <div class="container">
         <!-- home wrap -->
@@ -10,12 +16,14 @@
             <div class="row">
                 <!-- banner -->
                 <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3 card">
-                    <form action="?link=product" method="post">
+                    <!-- <form action="?link=product" method="post" id="formsearchvin"> -->
+                    <form action="#" method="post" id="formsearchvin">
                         <h4 class="footer-header">RECHERCHE PAR REFERENCE</h4>
                         <div class="row" style="margin-top:10px;text-align:center;">
                             <div class="col-md-7">
                                 <div class=" form-group">
-                                    <input class="input" placeholder="Immatriculation / VIN">
+                                    <input class="input" id="vin_input" 
+                                        placeholder="Immatriculation / VIN">
                                 </div>
                                 <div class="form-group">
                                     <input class="input" placeholder="Référence de la pièce" name="reference"
@@ -41,58 +49,31 @@
                                     <div class="row" style="margin-top:10px;text-align:center;">
                                         <div class="select col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3"
                                             style="margin-left:10px;">
-                                            <select name="marque" id="marque">
+                                            <select name="marque" id="marque"
+                                                <?php if(!isset($_GET["marque"]) || strcmp($_SESSION["marque"],$_GET["marque"])!=0 ){ ?>onChange=""
+                                                <?php } ?>>
                                                 <option selected disabled>Marque</option>
-                                                <?php
-													$res = $db->getAllMarques();
-													if (mysqli_num_rows($res) > 0) {
-														while ($row = mysqli_fetch_array($res)) {
-															$id = $row["idmarque"];
-															$nom = $row["libelle"];
-															?>
-                                                <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
-                                                <?php
-														}
-													} 
-												?>
+                                                <?php 
+                                                    foreach ($data->array as $manu) { ?>
+                                                <option value="<?php echo $manu->manuId; ?>"
+                                                    <?php if(isset($_GET["marque"]) && $_GET["marque"]==$manu->manuId){ ?>selected<?php } ?>>
+                                                    <?php echo $manu->manuName; ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                         <div class="select col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3"
                                             style="margin-left:10px;">
-                                            <select name="modele" id="modele">
+                                            <select name="modele" id="modele"
+                                                <?php if(!isset($_GET["modele"]) || strcmp($_SESSION["modele"],$_GET["modele"])!=0 ){ ?>onChange=""
+                                                <?php } ?>>
                                                 <option selected disabled>Modèle/Année</option>
-                                                <?php
-													$res = $db->getAllModeles();
-													if (mysqli_num_rows($res) > 0) {
-														while ($row = mysqli_fetch_array($res)) {
-															$id = $row["idmodele"];
-															$nom = $row["libelle"];
-															$annee = $row["annee"];
-															?>
-                                                <option value="<?php echo $id; ?>"><?php echo $nom." - ".$annee; ?>
-                                                </option>
-                                                <?php
-														}
-													} 
-												?>
                                             </select>
                                         </div>
                                         <div class="select col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3"
                                             style="margin-left:10px;">
                                             <select name="motorisation" id="motorisation">
                                                 <option selected disabled>Motorisation</option>
-                                                <?php
-													$res = $db->getAllCarburants();
-													if (mysqli_num_rows($res) > 0) {
-														while ($row = mysqli_fetch_array($res)) {
-															$id = $row["idcarburant"];
-															$nom = $row["libelle"];
-															?>
-                                                <option value="<?php echo $id; ?>"><?php echo $nom; ?></option>
-                                                <?php
-														}
-													} 
-												?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -113,4 +94,27 @@
         <!-- /home wrap -->
     </div>
     <!-- /container -->
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="modalsearchbox">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">RECHERCHE PAR VIN</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div id="bodyImage" style="text-align: center; "></div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div id="bodyList" style="padding:0px; margin:0px; overflow-y: scroll; height:400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

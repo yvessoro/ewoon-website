@@ -1,13 +1,30 @@
 <?php 
 	if(isset($_GET["id"])){
 		$row = $db->getProductById($_GET["id"]);
-	}else if(isset($_POST["reference"])){
-        $row = $db->getProductByRef($_POST["reference"]);
+	}else if(isset($_POST["reference"]) || isset($_GET["reference"])){
+        $reference=$_POST["reference"];
+        include("tecdoc_getProduct.php");
+        include("tecdoc_getProductDetails.php");
+        foreach ($data->array as $product) {
+            $productName=$product->articleName;
+            $brandName=$product->brandName;
+        }
+        foreach ($dataDetails as $article) {
+            foreach ($article->genericArticles as $genericArticle) {
+                $categoryId= $genericArticle->genericArticleId;
+                $category= $genericArticle->genericArticleDescription;
+            }
+            foreach ($article->images as $image) {
+              $productImage=$image->imageURL800;
+              $productThumb=$image->imageURL200;
+            }
+        }
+        //$row = $db->getProductByRef($_POST["reference"]);
     }else{
         redirect("?link=home");
     }
 
-    if ($row != NULL) {
+    /*if ($row != NULL) {
         $id = $row["idproduit"];
         $filename = $row["photo"];
         $designation = stripslashes($row["designation"]);
@@ -37,7 +54,7 @@
 
     if($id==null){
         redirect("?link=home");
-    }
+    }*/
 ?>
 
 <!-- BREADCRUMB -->
@@ -45,7 +62,7 @@
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="?link=products">Pièces</a></li>
-            <li class="active"><a href="?link=products&cat=<?php echo $idType; ?>"><?php echo $type ?></a></li>
+            <li class="active"><a href="?link=products&cat=<?php echo $categoryId; ?>"><?php echo $category; ?></a></li>
         </ul>
     </div>
 </div>
@@ -61,37 +78,15 @@
                 <div class="col-md-6">
                     <div id="product-main-view">
                         <div class="product-view">
-                            <img src="workspace/upload/<?php echo $filename; ?>" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/main-product01.jpg" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/main-product01.jpg" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/main-product01.jpg" alt="">
-                        </div>
-                    </div>
-                    <div id="product-view">
-                        <div class="product-view">
-                            <img src="./img/thumb-product01.jpg" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/thumb-product01.jpg" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/thumb-product01.jpg" alt="">
-                        </div>
-                        <div class="product-view">
-                            <img src="./img/thumb-product01.jpg" alt="">
+                            <img src="<?php echo $productImage; ?>" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="product-body">
-                        <h2 class="product-name"><?php echo $designation; ?></h2>
-                        <h3 class="product-price"><?php echo $prix; ?> FCFA</h3>
+                        <h2 class="product-name"><?php echo $productName; ?></h2>
+                        <h3 class="product-brand"><?php echo $brandName; ?></h3>
+                        <h3 class="product-price"><?php echo "0"; ?> FCFA</h3>
                         <div>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>
@@ -100,15 +95,15 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o empty"></i>
                             </div>
-                            <a href="#">3 Avis / Donner un avis</a>
+                            <a href="#">0 Avis / Donner un avis</a>
                         </div>
                         <p><strong>Disponibilité:</strong> En stock</p>
-                        <p><strong>Référence:</strong> <?php echo $reference; ?><strong> Etat:</strong> <?php echo $etat; ?></p>
+                        <p><strong>Référence:</strong> <?php echo $reference; ?><strong> Etat:</strong> <?php echo "Disponible"; ?></p>
                         <p><?php echo $description; ?></p>
                         <div class="product-btns">
                             <div class="qty-input">
                                 <span class="text-uppercase">QTE: </span>
-                                <input class="input" type="number">
+                                <input class="input" type="number" value="1">
                             </div>
                             <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Ajouter au panier</button>
                             <div class="pull-right">
