@@ -29,8 +29,15 @@
                 <li><a href="#">Pièces</a></li>
                 <?php 
 					$categorie="Recherche";
+                    if(isset($_POST["motorisation"])){
+                        $carID=$_POST["motorisation"];
+                        include("include/tecdoc_getdetailVehicule.php");
+                        foreach ($search as $car) {
+                            $resultSearch= $car->mfrName.' '.$car->vehicleModelSeriesName;
+                        }
+                    }
 				?>
-                <li class="active"><?php echo $categorie; ?></li>
+                <li class="active"><?php echo $categorie; ?></li> <?php if(!empty($resultSearch)){echo " / ".$resultSearch;} ?>
             </ul>
         </div>
     </div>
